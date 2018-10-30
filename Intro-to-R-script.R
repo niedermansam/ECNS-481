@@ -1,13 +1,14 @@
+# Into to R 
+# Sam Supplee-Niederman
+
+
 library(tidyverse) # For general data manipulation
 library(leaflet) # For interactive maps
-
 
 # Load data from a github repository
 resorts <- read.csv("https://raw.githubusercontent.com/niedermansam/SkiResortApp/master/skiResorts_geocoded3.csv") %>% as.tibble() %>% select(-X,-X.1)
 
-resorts
-# Into to R 
-# Sam Supplee-Niederman
+resorts # print data frame
 
 
 # Leaflet map ##################################
@@ -129,7 +130,7 @@ server <- function(input,output,session) {
       NAs = sum(is.na(!! sym(variable)))
     )
     
-    # Note: the !! sym(variable) format converts the user input into a form that R can recogize.
+    # Note: the !! sym(variable) format converts the user input into a format that R can recogize.
     
   })
 }
