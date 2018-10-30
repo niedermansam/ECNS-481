@@ -29,22 +29,28 @@ leaflet(resorts) %>%
   addTiles() %>% 
   addMarkers(popup = ~label)
 
+
+
 # Basic web scraping #######################
 library(rvest)
 
 website <- read_html("http://www.skicentral.com/mtcrescent.html") # read the html page
 website %>% html_nodes("td") %>% html_text() # extract objects in "td" tags
 
+
+
 # Working with APIs #########################
 library(tidycensus)
 
 # Load census variables
-census_vars <- tidycensus::load_variables(2016,"acs5")
+census_vars <- tidycensus::load_variables(2016,"acs5") # provide year and survey
 
 # Search for 'travel time' variables
 census_vars %>% filter(concept %>% str_detect("(?i)travel time"))
 
 get_acs('state',table="B08012")
+
+
 
 ## Summary Statistics with dplyr ###################
 library(dplyr)
@@ -63,6 +69,8 @@ resorts %>% group_by(state) %>% summarize(
   avg_trails = mean(trails,na.rm = T)
 )
 # Note: the 'na.rm=T' part is very important if there are any na values.
+
+
 
 ## Graphics and ggplot #################################
 
